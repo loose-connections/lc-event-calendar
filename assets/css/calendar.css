@@ -1,0 +1,196 @@
+#lc-calendar {
+	--fc-border-color: var(--lc-border-color, #E5E7EB);
+	--fc-page-bg-color: transparent;
+	--fc-neutral-bg-color: var(--lc-light-bg, #F3F4F6);
+	--fc-today-bg-color: var(--lc-today-tint, rgba(249, 115, 22, 0.08));
+	--fc-button-bg-color: var(--lc-text-color, #111827);
+	--fc-button-border-color: var(--lc-text-color, #111827);
+	--fc-button-hover-bg-color: var(--lc-hover-color, #1D4ED8);
+	--fc-button-hover-border-color: var(--lc-hover-color, #1D4ED8);
+	--fc-button-active-bg-color: var(--lc-workshop-color, #F97316);
+	--fc-button-active-border-color: var(--lc-workshop-color, #F97316);
+	overflow: visible;
+}
+
+#lc-calendar .fc,
+#lc-calendar .fc-scroller {
+	height: auto !important;
+	overflow: visible !important;
+}
+
+#lc-calendar .fc-scroller-harness {
+	height: auto !important;
+}
+
+#lc-calendar .fc-scrollgrid-section-header td {
+	height: auto !important;
+	padding: 0 !important;
+}
+
+#lc-calendar .fc-toolbar-title {
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: var(--lc-text-color, #111827);
+}
+
+/* toolbar spacing */
+#lc-calendar .fc-toolbar-chunk {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+#lc-calendar .fc-button-group {
+	gap: 6px;
+}
+
+/* buttons as separate rounded pills, not a fused block */
+#lc-calendar .fc-button {
+	border-radius: 8px !important;
+	text-transform: capitalize;
+	box-shadow: none !important;
+	font-weight: 600;
+	padding: 6px 14px;
+}
+
+/* FullCalendar v6 uses logical CSS properties for RTL support, so use
+   margin-inline-start here, not margin-left, when spacing toolbar
+   buttons. */
+#lc-calendar .fc-button-group > .fc-button:not(:first-child) {
+	margin-left: 0 !important;
+	margin-inline-start: 0 !important;
+}
+
+#lc-calendar .fc-daygrid-day-number {
+	color: var(--lc-text-color, #111827);
+	font-weight: 600;
+	padding: 6px;
+}
+
+#lc-calendar .fc-day-today .fc-daygrid-day-number {
+	color: var(--lc-workshop-color, #F97316);
+}
+
+#lc-calendar .fc-event {
+	border-radius: 6px;
+	border: none;
+	padding: 2px 6px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	margin-bottom: 2px;
+}
+
+#lc-calendar .fc-daygrid-event-dot {
+	display: none;
+}
+
+/* weekday header row styling */
+#lc-calendar .fc-col-header-cell {
+	background: var(--lc-text-color, #111827);
+	color: var(--lc-light-bg, #F3F4F6);
+	padding: 8px 0;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+}
+
+/* round the WHOLE grid (header + body) as one block so the header's top
+   corners follow the outer card shape correctly */
+#lc-calendar .fc-scrollgrid {
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid var(--fc-border-color);
+}
+
+#lc-calendar .fc-list-day-cushion {
+	background-color: var(--lc-light-bg, #F3F4F6);
+}
+
+/* Calendar / List as one flat toggle: white active pill on grey background.
+   Every button state (active and inactive) gets the same border width so
+   nothing shifts by a couple of pixels on click. */
+#lc-calendar .fc-button-group:has(.fc-dayGridMonth-button) {
+	gap: 3px;
+	border-radius: 10px;
+	overflow: hidden;
+	background: var(--lc-light-bg, #F3F4F6);
+	padding: 3px;
+	border: none;
+}
+
+#lc-calendar .fc-button-group:has(.fc-dayGridMonth-button) .fc-button {
+	border: 1px solid transparent !important;
+	box-shadow: none !important;
+	border-radius: 8px !important;
+	margin: 0 !important;
+	background: transparent !important;
+	color: #9A9A9A !important;
+}
+
+#lc-calendar .fc-button-group:has(.fc-dayGridMonth-button) .fc-button-active {
+	background: #ffffff !important;
+	color: var(--lc-text-color, #111827) !important;
+	border: 1px solid #D8D8D8 !important;
+}
+
+/* hover tooltip (appended to body, not inside #lc-calendar, so it is not
+   scoped to it) */
+.lc-event-tooltip {
+	position: absolute;
+	z-index: 9999;
+	background: rgba(17, 24, 39, 0.85);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border-radius: 10px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+	padding: 12px 14px;
+	width: 220px;
+	font-family: inherit;
+	pointer-events: none;
+}
+
+.lc-event-tooltip strong {
+	display: block;
+	font-size: 13px;
+	color: #ffffff;
+	margin-bottom: 4px;
+}
+
+.lc-event-tooltip .lc-tooltip-datetime {
+	display: block;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.95);
+	margin-bottom: 6px;
+}
+
+/* Clamped to 3 lines regardless of how long the short description field
+   actually is, so the tooltip always stays compact and the date/time
+   above it stays visible without scrolling. Overflow beyond 3 lines is
+   cut with a trailing ellipsis rather than growing the tooltip. */
+.lc-event-tooltip p {
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.4;
+	color: rgba(255, 255, 255, 0.85);
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* WordPress's theme-level img { max-width:100%; height:auto; } reset
+   overrides custom tooltip image sizing unless !important is added to
+   width, max-width and height here. */
+.lc-event-tooltip img {
+	display: block;
+	width: calc(100% + 28px) !important;
+	max-width: calc(100% + 28px) !important;
+	height: 100px !important;
+	object-fit: cover;
+	margin: -12px -14px 8px -14px;
+	border-radius: 10px 10px 0 0;
+}

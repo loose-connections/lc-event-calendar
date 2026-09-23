@@ -1,0 +1,71 @@
+/* Styling for the per-post shortcodes: [lc_schedule_rule], [lc_next_date],
+   [lc_upcoming_dates] and [lc_upcoming_events]. Colours read the same CSS
+   custom properties the calendar itself uses, so re-theming a site with
+   the 'lc_event_calendar_colors' filter updates both places at once. */
+
+.lc-schedule-summary,
+.lc-next-date-block {
+	margin-bottom: 12px;
+}
+
+.lc-schedule-summary .lc-day-line,
+.lc-next-date-block .lc-day-line {
+	display: block;
+	font-size: 1em;
+	font-weight: 700;
+	color: var(--lc-text-color, #111827);
+}
+
+.lc-schedule-summary .lc-time-line,
+.lc-next-date-block .lc-time-line {
+	display: block;
+	font-size: 14px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #444444;
+	margin-top: 2px;
+}
+
+.lc-schedule-summary .lc-range {
+	display: block;
+	font-size: 0.85em;
+	color: #666666;
+	margin-top: 2px;
+}
+
+.lc-upcoming-dates {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.lc-upcoming-dates li {
+	padding: 10px 14px;
+	margin-bottom: 8px;
+	border-left: 3px solid var(--lc-event-color, #2563EB);
+	background: var(--lc-light-bg, #F3F4F6);
+	border-radius: 6px;
+}
+
+.lc-upcoming-dates--workshop li {
+	border-left-color: var(--lc-workshop-color, #F97316);
+}
+
+.lc-upcoming-dates .lc-date {
+	display: block;
+	font-weight: 600;
+	color: var(--lc-text-color, #111827);
+}
+
+.lc-upcoming-dates .lc-time {
+	display: block;
+	font-size: 14px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #444444;
+}
+
+.lc-next-date-empty,
+.lc-upcoming-dates-empty {
+	color: #666666;
+}
